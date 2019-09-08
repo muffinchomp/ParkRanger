@@ -2,6 +2,8 @@ var express = require("express"),
 	app = express(),
 	bodyParser = require("body-parser"),
 	flash = require("connect-flash"),
+	session = require('express-session'),
+	MongoDBStore = require('connect-mongodb-session')(session),
 	mongoose = require("mongoose"),
 	passport = require("passport"),
 	LocalStrategy = require("passport-local"),
@@ -9,7 +11,11 @@ var express = require("express"),
 	Park = require("./models/park"),
 	Comment = require("./models/comment"),
 	User = require("./models/user"),
-	seedDB = require("./seeds")
+	seedDB = require("./seeds"),
+	store = new MongoDBStore({
+  		uri: "mongodb+srv://devuser:C3Hfsx7gRbqe9yA@cluster0-oqra2.mongodb.net/test?retryWrites=true&w=majority",
+  		collection: 'myParks'
+	});
 
 //Routes
 var commentRoutes = require("./routes/comments"),
@@ -27,6 +33,7 @@ app.use(flash());
 //Passport Congig
 app.use(require("express-session")({
 	secret: "Cane's chicken",
+	store: store,
 	resave: false,
 	saveUninitialized: false
 }));

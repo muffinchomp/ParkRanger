@@ -1,6 +1,7 @@
 # ParkRanger
 
 > A Node.js web application project from the Udemy course - [The Web Developer Bootcamp by Colt Steele](https://www.udemy.com/the-web-developer-bootcamp/)
+> Full-stack demo blog app. CRUD blog application built on a MEN stack 
 
 ## Live Demo
 
